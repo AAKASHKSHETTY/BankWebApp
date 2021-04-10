@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<Html>
+    <Head>
+    <title>
+    </title>
+    <link rel='stylesheet' href="{% static 'table.css' %}" type="text/css">
+    </Head>
+    <Body>
+        <section>
+            <h1>Transaction History</h1>
+            <div class="tbl-header">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                  <tr>
+                      <b><th>Id</th></b>
+                      <b><th>Payer Id</th></b>
+                      <b><th>Payee Id</th></b>
+                      <b><th>Amount</th></b>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="tbl-content">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                {% for pos in data %}
+                  <tr>
+                      <b><td>{{ pos.id }}</td></b>
+                      <b><td>{{ pos.payer_id }} </td></b>
+                      <b><td>{{ pos.payee_id }}</td></b>
+                      <b><td>{{ pos.trans_amt }}</td></b>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </section>
+    </Body>
+    </Html>

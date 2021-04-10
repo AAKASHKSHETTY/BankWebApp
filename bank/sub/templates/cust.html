@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'cust.css' %}" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/bad733c527.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <a href="{% url 'home' %}">
+      <i class="fas fa-arrow-left fa-2x"></i>
+    </a>
+<div class="container">
+    {% for pos in data %}
+        <div class="card">
+        <img src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no" alt="Person" class="card__image">
+        <p class="card__name">{{pos.name}}</p>
+        <div class="grid-container">
+            <div class="grid-child-posts">
+                Id: {{pos.Cust_id}}
+            </div>
+            <div class="grid-child-followers">
+            City: {{pos.location}}
+            </div>
+        </div>
+        <p class="amt">Balance: {{pos.Amount}}</p>
+
+      {% if not tog %}
+
+              <form method="POST" action="{% url 'cust' %}">
+                {% csrf_token %}
+                <button class="btn draw-border">Transfer Money</button>
+                <input type="hidden" name="amt" value="{{pos.Amount}}"/>
+                <input type="hidden" name="cid" value="{{pos.Cust_id}}"/>
+              </form>
+
+      {% else %}
+              {% if pos.Cust_id == from %}
+
+              {% else %}
+
+                  <form method="POST" action="{% url 'sact' %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Transfer To" id = 'know' class="btn draw-border"/>
+                    <input type="hidden" name="amt" value="{{pos.Amount}}"/>
+                    <input type="hidden" name="cid" value="{{pos.Cust_id}}"/>
+                  </form>
+
+              {% endif %}
+
+      {% endif %}
+
+  </div>
+
+    {% endfor %}
+</div>
+</body>
+
+</html>

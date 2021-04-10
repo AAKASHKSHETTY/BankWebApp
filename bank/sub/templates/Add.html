@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>details</title>
+    <link rel="stylesheet" href="{% static 'Add.css' %}" type="text/css">
+        <script src="https://kit.fontawesome.com/bad733c527.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <a href="{% url 'home' %}">
+      <i class="fas fa-arrow-left fa-2x"></i>
+    </a>
+<div class="login-box">
+  <h2>Customer Info</h2>
+  <form id="aform" method="POST" action="{% url 'Add' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+
+    <div class="user-box">
+      <input type="text" id="cid" name="cid" required="">
+      <label>Customer Id</label>
+    </div>
+
+    <div class="user-box">
+      <input type="text" id="name" name="name" required="">
+      <label>Name</label>
+    </div>
+
+    <div class="user-box">
+      <input type="text" id="loc" name="loc" required="">
+      <label>Location</label>
+    </div>
+
+    <div class="user-box">
+      <input type="text" id="amt" name="amt" required="">
+      <label>Amount</label>
+    </div>
+    <div class="user-box">
+        <input type = "file" placeholder = "pictures" name = "pictures" />
+    </div>
+    <a href="javascript:{}" onclick="document.getElementById('aform').submit();">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
+</div>
+<script type="text/javascript">
+    if ("{{ msg }}" != '')
+    {
+        alert('{{ msg }}')
+    }
+</script>
+</body>
+</html>

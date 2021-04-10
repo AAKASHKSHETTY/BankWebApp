@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'sact.css' %}" type="text/css">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form method="POST" id = 'aform' action="{% url 'calc' %}">
+    {% csrf_token %}
+<div class="card text-center" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title text-muted">Payer Info</h5>
+    <h6 class="card-subtitle mb-2 ">{{ payer.name }}</h6>
+    <p class="card-text">Customer Id: {{ payer.Cust_id }}</p>
+    <p class="card-text">Available Balance: {{ payer.Amount }}</p>
+    <input type="text" placeholder="Transfer Amount" name="amt">
+      <div class="box">
+            <a href="javascript:{}" onclick="document.getElementById('aform').submit();" class="btn btn-white btn-animation-1">Transfer</a>
+      </div>
+  </div>
+</div>
+</form>
+
+<div class="card text-center" id = 'right' style="width: 18rem;">
+  <div class="card-body">
+      <h5 class="card-title  text-muted">Payee Info</h5>
+    <h6 class="card-subtitle mb-2">{{ payee.name }}</h6>
+    <p class="card-text">Customer Id: {{ payer.Cust_id }}</p>
+  </div>
+</div>
+
+
+    <script type="text/javascript">
+        if ('{{mes}}' != '')
+            {
+                 alert('{{ mes }}');
+            }
+    </script>
+</body>
+</html>
